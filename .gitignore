@@ -1,0 +1,11 @@
+# APK files are uploaded as verified Release assets, never committed here.
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.pem
+.env
+.env.*
+local.properties
+google-services.json

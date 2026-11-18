@@ -1,4 +1,18 @@
 {
   "schema": 1,
-  "available": false
+  "available": true,
+  "packageName": "com.novabox.tv",
+  "versionCode": 734,
+  "versionName": "1.04",
+  "sizeBytes": 35393500,
+  "sha256": "a34b2730fb34885dad20a656d384012de5c43ecd6201e883cade62217fe27ba8",
+  "url": "https://github.com/seyfikavak60-star/novabox-releases/releases/download/v1.04-734/novabox-734-1.04.apk",
+  "minSdk": 24,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "minimumVersionCode": 734
 }

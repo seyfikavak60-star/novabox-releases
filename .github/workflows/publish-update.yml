@@ -1,0 +1,42 @@
+name: Publish verified NovaBox update
+
+on:
+  release:
+    types: [published, edited]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Published release tag, for example v1.06-738'
+        required: true
+        type: string
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-update.yml', '.github/scripts/publish-update.mjs']
+
+permissions: {}
+concurrency:
+  group: novabox-external-update-feed
+  cancel-in-progress: false
+
+jobs:
+  validate-and-publish:
+    if: github.repository == 'seyfikavak60-star/novabox-releases' && (github.event_name != 'release' || (!github.event.release.draft && !github.event.release.prerelease))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Verify official APK and atomically publish the update feed
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag || github.event.release.tag_name || '' }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "seyfikavak60-star/novabox-releases"
+          test -f "$ANDROID_HOME/build-tools/36.0.0/lib/apksigner.jar"
+          test -x "$ANDROID_HOME/build-tools/36.0.0/aapt"
+          test -x "$ANDROID_HOME/build-tools/36.0.0/zipalign"
+          # Fetch only the publisher at this workflow's immutable commit.
+          gh api "repos/$GITHUB_REPOSITORY/contents/.github/scripts/publish-update.mjs?ref=$GITHUB_SHA" --jq .content | base64 --decode > "$RUNNER_TEMP/novabox-publish.mjs"
+          node "$RUNNER_TEMP/novabox-publish.mjs"

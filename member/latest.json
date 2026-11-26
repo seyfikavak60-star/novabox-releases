@@ -2,11 +2,11 @@
   "schema": 1,
   "available": true,
   "packageName": "com.novabox.tv",
-  "versionCode": 736,
-  "versionName": "1.05",
-  "sizeBytes": 35393500,
-  "sha256": "a6737611d54a29824571c18edd1110032fa6719d3d449e4d59e4c2f40e692af2",
-  "url": "https://github.com/seyfikavak60-star/novabox-releases/releases/download/v1.05-736/novabox-736-1.05.apk",
+  "versionCode": 752,
+  "versionName": "1.03.03",
+  "sizeBytes": 35868005,
+  "sha256": "2a136849c47b2953cfc0e4cca1d2a52732f9cf85309b9ff45bebff5f6b4061f6",
+  "url": "https://github.com/seyfikavak60-star/novabox-releases/releases/download/v1.03.03-752/novabox-752-1.03.03.apk",
   "minSdk": 24,
   "abis": [
     "arm64-v8a",
@@ -14,5 +14,5 @@
     "x86",
     "x86_64"
   ],
-  "minimumVersionCode": 736
+  "minimumVersionCode": 752
 }
